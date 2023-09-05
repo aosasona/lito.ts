@@ -13,6 +13,35 @@ export type Service = {
     host: string;
     port: number;
     enable_tls: boolean;
+    domains: Domain[];
+};
+
+export type DomainStatusCert = {
+    value: 'issued' | 'pending' | 'failed';
+    retry: Retry;
+    last_updated: number;
+};
+
+export type DomainStatusDNS = {
+    value: 'verified' | 'pending' | 'aborted';
+    retry: Retry;
+    last_updated: number;
+};
+
+export type DomainStatus = {
+    cert: DomainStatusCert;
+    dns: DomainStatusDNS;
+};
+
+export type Retry = {
+    max_tries: number;
+    interval: number;
+    current_tries: number;
+};
+
+export type Domain = {
+    name: string;
+    status: DomainStatus;
 };
 
 export type Proxy = {
@@ -21,6 +50,7 @@ export type Proxy = {
     tls_port: number;
     data_dir: string;
     storage: 'json' | 'sqlite';
+    cnames: string[];
 };
 
 export type Config = {
