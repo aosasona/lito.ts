@@ -15,6 +15,7 @@ export type Service = {
     port?: number;
     enable_tls?: boolean | null;
     domains: Domain[];
+    strip_headers?: string[];
 };
 
 export type DomainStatusCert = {
