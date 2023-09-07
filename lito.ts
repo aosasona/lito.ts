@@ -4,21 +4,21 @@
  */
 	
 export type Admin = {
-    enabled: boolean;
-    port: number;
-    api_key: string;
+    enabled?: boolean;
+    port?: number;
+    api_key?: string;
+    confirm_disable?: boolean;
 };
 
 export type Service = {
-    host: string;
-    port: number;
-    enable_tls: boolean;
+    host?: string;
+    port?: number;
+    enable_tls?: boolean | null;
     domains: Domain[];
 };
 
 export type DomainStatusCert = {
     value: 'issued' | 'pending' | 'failed';
-    retry: Retry;
     last_updated: number;
 };
 
@@ -45,10 +45,10 @@ export type Domain = {
 };
 
 export type Proxy = {
-    host: string;
-    port: number;
-    tls_port: number;
-    data_dir: string;
+    host?: string;
+    http_port?: number;
+    https_port?: number;
+    data_dir?: string;
     storage: 'json' | 'sqlite';
     cnames: string[];
 };
